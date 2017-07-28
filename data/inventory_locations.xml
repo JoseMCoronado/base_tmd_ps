@@ -1,9 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <!--NINGBO-->
   <record model="stock.location" id="tmd_location_ningbo">
     <field name="name">Ningbo</field>
     <field name="location_id" eval="46"/>
     <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_ningbo_out">
+    <field name="name">Ningbo Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">NING/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_ningbo_in">
+    <field name="name">Ningbo In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">NING/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_ningbo_out">
+    <field name="name">Deliver Orders (Ningbo)</field>
+    <field name="sequence_id" ref="tmd_sequence_ningbo_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_ningbo"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_ningbo_in">
+    <field name="name">Receipts (Ningbo)</field>
+    <field name="sequence_id" ref="tmd_sequence_ningbo_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_ningbo"/>
+    <field name="return_picking_type_id" ref="tmd_operation_ningbo_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_ningbo_out">
+    <field name="return_picking_type_id" ref="tmd_operation_ningbo_in"/>
+  </record>
+
+  <!--QINGDAO-->
+  <record model="stock.location" id="tmd_location_qingdao">
+    <field name="name">Qingdao</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+  <record model="stock.location" id="tmd_location_shanghai">
+    <field name="name">Shanghai</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+  <record model="stock.location" id="tmd_location_shenzhen">
+    <field name="name">Shenzhen</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+  <record model="stock.location" id="tmd_location_tianjin">
+    <field name="name">Tianjin</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+  <record model="stock.location" id="tmd_location_xiamen">
+    <field name="name">Xiamen</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+  <record model="stock.location" id="tmd_location_water">
+    <field name="name">Water</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">transit</field>
     <field name="company_id" eval="8"/>
   </record>
 </odoo>
