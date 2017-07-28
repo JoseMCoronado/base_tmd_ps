@@ -45,7 +45,6 @@
   <record model="stock.picking.type" id="tmd_operation_ningbo_out">
     <field name="return_picking_type_id" ref="tmd_operation_ningbo_in"/>
   </record>
-
   <!--QINGDAO-->
   <record model="stock.location" id="tmd_location_qingdao">
     <field name="name">Qingdao</field>
@@ -53,34 +52,267 @@
     <field name="usage">internal</field>
     <field name="company_id" eval="8"/>
   </record>
+  <record model="ir.sequence" id="tmd_sequence_qingdao_out">
+    <field name="name">Qingdao Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">QING/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_qingdao_in">
+    <field name="name">Qingdao In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">QING/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_qingdao_out">
+    <field name="name">Deliver Orders (Qingdao)</field>
+    <field name="sequence_id" ref="tmd_sequence_qingdao_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_qingdao"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_qingdao_in">
+    <field name="name">Receipts (Qingdao)</field>
+    <field name="sequence_id" ref="tmd_sequence_qingdao_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_qingdao"/>
+    <field name="return_picking_type_id" ref="tmd_operation_qingdao_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_qingdao_out">
+    <field name="return_picking_type_id" ref="tmd_operation_qingdao_in"/>
+  </record>
+  <!--SHANGHAI-->
   <record model="stock.location" id="tmd_location_shanghai">
     <field name="name">Shanghai</field>
     <field name="location_id" eval="46"/>
     <field name="usage">internal</field>
     <field name="company_id" eval="8"/>
   </record>
+  <record model="ir.sequence" id="tmd_sequence_shanghai_out">
+    <field name="name">Shanghai Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">SHAN/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_shanghai_in">
+    <field name="name">Shanghai In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">SHAN/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_shanghai_out">
+    <field name="name">Deliver Orders (Shanghai)</field>
+    <field name="sequence_id" ref="tmd_sequence_shanghai_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_shanghai"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_shanghai_in">
+    <field name="name">Receipts (Shanghai)</field>
+    <field name="sequence_id" ref="tmd_sequence_shanghai_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_shanghai"/>
+    <field name="return_picking_type_id" ref="tmd_operation_shanghai_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_shanghai_out">
+    <field name="return_picking_type_id" ref="tmd_operation_shanghai_in"/>
+  </record>
+  <!--SHENZHEN-->
   <record model="stock.location" id="tmd_location_shenzhen">
     <field name="name">Shenzhen</field>
     <field name="location_id" eval="46"/>
     <field name="usage">internal</field>
     <field name="company_id" eval="8"/>
   </record>
+  <record model="ir.sequence" id="tmd_sequence_shenzhen_out">
+    <field name="name">Shenzhen Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">SHEN/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_shenzhen_in">
+    <field name="name">Shenzhen In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">SHEN/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_shenzhen_out">
+    <field name="name">Deliver Orders (Shenzhen)</field>
+    <field name="sequence_id" ref="tmd_sequence_shenzhen_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_shenzhen"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_shenzhen_in">
+    <field name="name">Receipts (Shenzhen)</field>
+    <field name="sequence_id" ref="tmd_sequence_shenzhen_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_shenzhen"/>
+    <field name="return_picking_type_id" ref="tmd_operation_shenzhen_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_shenzhen_out">
+    <field name="return_picking_type_id" ref="tmd_operation_shenzhen_in"/>
+  </record>
+  <!--TIANJIN-->
   <record model="stock.location" id="tmd_location_tianjin">
     <field name="name">Tianjin</field>
     <field name="location_id" eval="46"/>
     <field name="usage">internal</field>
     <field name="company_id" eval="8"/>
   </record>
+  <record model="ir.sequence" id="tmd_sequence_tianjin_out">
+    <field name="name">Tianjin Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">TIAN/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_tianjin_in">
+    <field name="name">Tianjin In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">TIAN/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_tianjin_out">
+    <field name="name">Deliver Orders (Tianjin)</field>
+    <field name="sequence_id" ref="tmd_sequence_tianjin_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_tianjin"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_tianjin_in">
+    <field name="name">Receipts (Tianjin)</field>
+    <field name="sequence_id" ref="tmd_sequence_tianjin_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_tianjin"/>
+    <field name="return_picking_type_id" ref="tmd_operation_tianjin_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_tianjin_out">
+    <field name="return_picking_type_id" ref="tmd_operation_tianjin_in"/>
+  </record>
+  <!--XIAMEN-->
   <record model="stock.location" id="tmd_location_xiamen">
     <field name="name">Xiamen</field>
     <field name="location_id" eval="46"/>
     <field name="usage">internal</field>
     <field name="company_id" eval="8"/>
   </record>
+  <record model="ir.sequence" id="tmd_sequence_xiamen_out">
+    <field name="name">Xiamen Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">XIA/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_xiamen_in">
+    <field name="name">Xiamen In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">XIA/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_xiamen_out">
+    <field name="name">Deliver Orders (Xiamen)</field>
+    <field name="sequence_id" ref="tmd_sequence_xiamen_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_xiamen"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_xiamen_in">
+    <field name="name">Receipts (Xiamen)</field>
+    <field name="sequence_id" ref="tmd_sequence_xiamen_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_xiamen"/>
+    <field name="return_picking_type_id" ref="tmd_operation_xiamen_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_xiamen_out">
+    <field name="return_picking_type_id" ref="tmd_operation_xiamen_in"/>
+  </record>
+  <!--WATER-->
   <record model="stock.location" id="tmd_location_water">
     <field name="name">Water</field>
     <field name="location_id" eval="46"/>
     <field name="usage">transit</field>
     <field name="company_id" eval="8"/>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_water_out">
+    <field name="name">Water Out</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">WATER/OUT/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="ir.sequence" id="tmd_sequence_water_in">
+    <field name="name">Water In</field>
+    <field name="implementation">standard</field>
+    <field name="active" eval="True"/>
+    <field name="company_id" eval="8"/>
+    <field name="prefix">WATER/IN/</field>
+    <field name="padding">5</field>
+    <field name="number_increment">1</field>
+    <field name="number_next_actual">1</field>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_water_out">
+    <field name="name">Deliver Orders (Water)</field>
+    <field name="sequence_id" ref="tmd_sequence_water_out"/>
+    <field name="code">outgoing</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_src_id" ref="tmd_location_water"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_water_in">
+    <field name="name">Receipts (Water)</field>
+    <field name="sequence_id" ref="tmd_sequence_water_in"/>
+    <field name="code">incoming</field>
+    <field name="warehouse_id" eval="6"/>
+    <field name="default_location_dest_id" ref="tmd_location_water"/>
+    <field name="return_picking_type_id" ref="tmd_operation_water_out"/>
+  </record>
+  <record model="stock.picking.type" id="tmd_operation_water_out">
+    <field name="return_picking_type_id" ref="tmd_operation_water_in"/>
   </record>
 </odoo>
