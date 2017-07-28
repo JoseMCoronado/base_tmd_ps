@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="stock.location" id="tmd_location_ningbo">
+    <field name="name">Ningbo</field>
+    <field name="location_id" eval="46"/>
+    <field name="usage">internal</field>
+    <field name="company_id" eval="8"/>
+  </record>
+</odoo>
