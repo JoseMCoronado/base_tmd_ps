@@ -184,7 +184,7 @@
     <field name="pull_ids" eval="[(6, 0, [
       ref('tmd_rule_buy_shan'),
       ref('tmd_rule_trans_shan_water'),
-      ref('tmd_rule_trans_shan_cust')
+      ref('tmd_rule_trans_water_la')
       ])]"/>
   </record>
 </odoo>
