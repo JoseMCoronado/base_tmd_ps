@@ -31,7 +31,7 @@
     <field name="sequence">1</field>
     <field name="pull_ids" eval="[(6, 0, [
       ref('tmd_rule_cpc_buy'),
-      ref('tmd_rule_cpc_pitt_cust')
+      ref('tmd_rule_cpc_pgh_cust')
       ])]"/>
   </record>
   <!--China/Los Angeles/Customer-->
