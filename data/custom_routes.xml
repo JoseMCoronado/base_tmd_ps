@@ -10,19 +10,20 @@
     <field name="group_propagation_option">propagate</field>
     <field name="propagate" eval="True"/>
   </record>
-  <record model="procurement.rule" id="tmd_rule_cpc_pitt_cust">
+  <record model="procurement.rule" id="tmd_rule_cpc_pgh_cust">
     <field name="name">PGH -> CUST</field>
     <field name="action">move</field>
     <field name="sequence">20</field>
     <field name="location_src_id" ref="stock.stock_location_stock"/>
+    <field name="procure_method">make_to_order</field>
     <field name="location_id" ref="stock.stock_location_customers"/>
     <field name="picking_type_id" ref="stock.picking_type_out"/>
     <field name="group_propagation_option">propagate</field>
     <field name="propagate" eval="True"/>
   </record>
   <record model="stock.location.route" id="tmd_route_cpc">
-    <field name="name">(1) TMD China -> PGH -> Customer</field>
-    <field name="company_id" eval="1"/>
+    <field name="name">(1) CH -> PGH -> CUST</field>
+    <field name="company_id" ref="base.main_company"/>
     <field name="product_categ_selectable" eval="False"/>
     <field name="product_selectable" eval="False"/>
     <field name="warehouse_selectable" eval="False"/>
@@ -31,6 +32,159 @@
     <field name="pull_ids" eval="[(6, 0, [
       ref('tmd_rule_cpc_buy'),
       ref('tmd_rule_cpc_pitt_cust')
+      ])]"/>
+  </record>
+  <!--China/Los Angeles/Customer-->
+  <record model="procurement.rule" id="tmd_rule_clc_buy">
+    <field name="name">BUY(767) -> LA</field>
+    <field name="action">buy</field>
+    <field name="sequence">20</field>
+    <field name="location_id" eval="57"/>
+    <field name="picking_type_id" eval="37"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="procurement.rule" id="tmd_rule_clc_la_cust">
+    <field name="name">LA -> CUST</field>
+    <field name="action">move</field>
+    <field name="sequence">20</field>
+    <field name="location_src_id" eval="57"/>
+    <field name="procure_method">make_to_order</field>
+    <field name="location_id" ref="stock.stock_location_customers"/>
+    <field name="picking_type_id" eval="40"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="stock.location.route" id="tmd_route_clc">
+    <field name="name">(2) CH -> LA -> CUST</field>
+    <field name="company_id" ref="base.main_company"/>
+    <field name="product_categ_selectable" eval="False"/>
+    <field name="product_selectable" eval="False"/>
+    <field name="warehouse_selectable" eval="False"/>
+    <field name="sale_selectable" eval="True"/>
+    <field name="sequence">2</field>
+    <field name="pull_ids" eval="[(6, 0, [
+      ref('tmd_rule_clc_la_cust'),
+      ref('tmd_rule_clc_buy')
+      ])]"/>
+  </record>
+  <!--China Direct to Customer-->
+  <record model="procurement.rule" id="tmd_rule_c2c">
+    <field name="name">CH -> CUST</field>
+    <field name="action">buy</field>
+    <field name="sequence">20</field>
+    <field name="location_id" ref="stock.stock_location_customers"/>
+    <field name="picking_type_id" ref="stock_dropshipping.picking_type_dropship"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="stock.location.route" id="tmd_route_c2c">
+    <field name="name">(3) CH -> CUST</field>
+    <field name="company_id" ref="base.main_company"/>
+    <field name="product_categ_selectable" eval="False"/>
+    <field name="product_selectable" eval="False"/>
+    <field name="warehouse_selectable" eval="False"/>
+    <field name="sale_selectable" eval="True"/>
+    <field name="sequence">3</field>
+    <field name="pull_ids" eval="[(6, 0, [
+      ref('tmd_rule_c2c')
+      ])]"/>
+  </record>
+  <!--767: 3E/Shanghai/Water/Pgh-->
+  <record model="procurement.rule" id="tmd_rule_buy_shan">
+    <field name="name">BUY -> SHAN</field>
+    <field name="action">buy</field>
+    <field name="sequence">20</field>
+    <field name="location_id" ref="tmd_location_shanghai"/>
+    <field name="picking_type_id" ref="tmd_operation_shanghai_in"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="procurement.rule" id="tmd_rule_trans_shan_water">
+    <field name="name">SHAN -> WATER</field>
+    <field name="action">move</field>
+    <field name="sequence">20</field>
+    <field name="location_src_id" ref="tmd_location_shanghai"/>
+    <field name="procure_method">make_to_order</field>
+    <field name="location_id" ref="tmd_location_water"/>
+    <field name="picking_type_id" ref="tmd_sequence_shanghai_out"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="procurement.rule" id="tmd_rule_trans_water_pgh">
+    <field name="name">WATER -> PGH</field>
+    <field name="action">move</field>
+    <field name="sequence">20</field>
+    <field name="location_src_id" ref="tmd_location_water"/>
+    <field name="procure_method">make_to_order</field>
+    <field name="location_id" ref="stock.stock_location_customers"/>
+    <field name="picking_type_id" eval="35"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="stock.location.route" id="tmd_route_3swp">
+    <field name="name">VIA PGH (1) 3E -> SHAN -> WATER -> PGH</field>
+    <field name="company_id" eval="8"/>
+    <field name="product_categ_selectable" eval="False"/>
+    <field name="product_selectable" eval="False"/>
+    <field name="warehouse_selectable" eval="False"/>
+    <field name="sale_selectable" eval="True"/>
+    <field name="sequence">4</field>
+    <field name="pull_ids" eval="[(6, 0, [
+      ref('tmd_rule_buy_shan'),
+      ref('tmd_rule_trans_shan_water'),
+      ref('tmd_rule_trans_water_pgh')
+      ])]"/>
+  </record>
+  <!--767: 3E/Shanghai/Customer-->
+  <record model="procurement.rule" id="tmd_rule_trans_shan_cust">
+    <field name="name">SHAN -> CUST</field>
+    <field name="action">move</field>
+    <field name="sequence">20</field>
+    <field name="location_src_id" ref="tmd_location_shanghai"/>
+    <field name="procure_method">make_to_order</field>
+    <field name="location_id" ref="stock.stock_location_customers"/>
+    <field name="picking_type_id" ref="tmd_sequence_shanghai_out"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="stock.location.route" id="tmd_route_3sc">
+    <field name="name">CUST DIRECT (1) 3E -> SHAN -> CUST</field>
+    <field name="company_id" eval="8"/>
+    <field name="product_categ_selectable" eval="False"/>
+    <field name="product_selectable" eval="False"/>
+    <field name="warehouse_selectable" eval="False"/>
+    <field name="sale_selectable" eval="True"/>
+    <field name="sequence">10</field>
+    <field name="pull_ids" eval="[(6, 0, [
+      ref('tmd_rule_buy_shan'),
+      ref('tmd_rule_trans_shan_cust')
+      ])]"/>
+  </record>
+  <!--767: 3E/Shanghai/Water/Los Angeles/Customer-->
+  <record model="procurement.rule" id="tmd_rule_trans_water_la">
+    <field name="name">WATER -> LA</field>
+    <field name="action">move</field>
+    <field name="sequence">20</field>
+    <field name="location_src_id" ref="tmd_location_water"/>
+    <field name="procure_method">make_to_order</field>
+    <field name="location_id" ref="stock.stock_location_customers"/>
+    <field name="picking_type_id" eval="35"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="stock.location.route" id="tmd_route_3swl">
+    <field name="name">VIA LA(1) 3E -> SHAN -> WATER -> LA</field>
+    <field name="company_id" eval="8"/>
+    <field name="product_categ_selectable" eval="False"/>
+    <field name="product_selectable" eval="False"/>
+    <field name="warehouse_selectable" eval="False"/>
+    <field name="sale_selectable" eval="True"/>
+    <field name="sequence">16</field>
+    <field name="pull_ids" eval="[(6, 0, [
+      ref('tmd_rule_buy_shan'),
+      ref('tmd_rule_trans_shan_water'),
+      ref('tmd_rule_trans_shan_cust')
       ])]"/>
   </record>
 </odoo>

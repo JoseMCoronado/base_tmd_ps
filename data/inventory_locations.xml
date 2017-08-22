@@ -297,22 +297,4 @@
     <field name="number_increment">1</field>
     <field name="number_next_actual">1</field>
   </record>
-  <record model="stock.picking.type" id="tmd_operation_water_out">
-    <field name="name">Deliver Orders (Water)</field>
-    <field name="sequence_id" ref="tmd_sequence_water_out"/>
-    <field name="code">outgoing</field>
-    <field name="warehouse_id" eval="6"/>
-    <field name="default_location_src_id" ref="tmd_location_water"/>
-  </record>
-  <record model="stock.picking.type" id="tmd_operation_water_in">
-    <field name="name">Receipts (Water)</field>
-    <field name="sequence_id" ref="tmd_sequence_water_in"/>
-    <field name="code">incoming</field>
-    <field name="warehouse_id" eval="6"/>
-    <field name="default_location_dest_id" ref="tmd_location_water"/>
-    <field name="return_picking_type_id" ref="tmd_operation_water_out"/>
-  </record>
-  <record model="stock.picking.type" id="tmd_operation_water_out">
-    <field name="return_picking_type_id" ref="tmd_operation_water_in"/>
-  </record>
 </odoo>
