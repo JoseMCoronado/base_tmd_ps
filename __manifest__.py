@@ -12,7 +12,7 @@ Intial configurations & customizations to the base database
     'depends': ['base','stock'],
     'data': [
         'data/inventory_locations.xml',
-        #'data/ir_model_fields.xml',
+        'data/custom_routes.xml',
         #'data/ir_actions_act_window.xml',
         #'data/ir_actions_server.xml',
         #'data/ir_ui_view.xml',

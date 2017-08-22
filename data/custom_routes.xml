@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--China/Pittsburgh/Customer-->
+  <record model="procurement.rule" id="tmd_rule_cpc_buy">
+    <field name="name">BUY(767) -> PGH</field>
+    <field name="action">buy</field>
+    <field name="sequence">20</field>
+    <field name="location_id" ref="stock.stock_location_stock"/>
+    <field name="picking_type_id" ref="stock.picking_type_in"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="procurement.rule" id="tmd_rule_cpc_pitt_cust">
+    <field name="name">PGH -> CUST</field>
+    <field name="action">move</field>
+    <field name="sequence">20</field>
+    <field name="location_src_id" ref="stock.stock_location_stock"/>
+    <field name="location_id" ref="stock.stock_location_customers"/>
+    <field name="picking_type_id" ref="stock.picking_type_out"/>
+    <field name="group_propagation_option">propagate</field>
+    <field name="propagate" eval="True"/>
+  </record>
+  <record model="stock.location.route" id="tmd_route_cpc">
+    <field name="name">(1) TMD China -> PGH -> Customer</field>
+    <field name="company_id" eval="1"/>
+    <field name="product_categ_selectable" eval="False"/>
+    <field name="product_selectable" eval="False"/>
+    <field name="warehouse_selectable" eval="False"/>
+    <field name="sale_selectable" eval="True"/>
+    <field name="sequence">1</field>
+    <field name="pull_ids" eval="[(6, 0, [
+      ref('tmd_rule_cpc_buy'),
+      ref('tmd_rule_cpc_pitt_cust')
+      ])]"/>
+  </record>
+</odoo>
