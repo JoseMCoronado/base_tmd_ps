@@ -9,7 +9,7 @@
     'description': """
 Intial configurations & customizations to the base database
         """,
-    'depends': ['base','stock'],
+    'depends': ['base','stock','stock_dropshipping'],
     'data': [
         'data/inventory_locations.xml',
         'data/custom_routes.xml',
